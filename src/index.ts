@@ -22,6 +22,6 @@ app.use("/activity", activity);
 app.use("/project", project);
 app.use("/site", site);
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
     console.log(`Express server running on http://localhost:${PORT}`);
 });
