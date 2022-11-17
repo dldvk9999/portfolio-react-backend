@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/", (req, res) => {
     const key = req.body.key;
 
-    if (keyCheck(key)) {
+    if (key && keyCheck(key)) {
         db.query("select * from project", (err, row) => {
             if (err) res.status(500).send("about db error");
             else res.status(200).send({ length: row.length, data: row });
@@ -28,7 +28,7 @@ router.post("/change", (req, res) => {
     const takeaway = queryCheck(req.body.takeaway);
     const image = req.body.image;
 
-    if (keyCheck(key)) {
+    if (key && keyCheck(key)) {
         db.query(
             `UPDATE project SET name = '${name}', start = '${start}', end = '${end}', introduce = '${introduce}', stack = '${stack}', takeaway = '${takeaway}', image = '${image}' WHERE id = ${id} and isbackup = 0`,
             (err, row) => {
@@ -52,7 +52,7 @@ router.delete("/:id", (req, res) => {
     const key = req.body.key;
     const id = req.params.id;
 
-    if (keyCheck(key)) {
+    if (key && keyCheck(key)) {
         db.query(
             `DELETE FROM project WHERE id = ${id} and isbackup = 0`,
             (err, row) => {

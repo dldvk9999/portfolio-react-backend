@@ -7,10 +7,12 @@ const router = express.Router();
 router.post("/", (req, res) => {
     const key = req.body.key;
 
-    if (keyCheck(key)) {
-        db.query("select * from about", (err, row) => {
-            if (err) res.status(500).send("about db error");
-            else res.status(200).send({ length: row.length, data: row });
+    if (key && keyCheck(key)) {
+        db.query("select * from about limit 1", (err, row) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("about db error");
+            } else res.status(200).send({ length: row.length, data: row });
         });
     } else {
         res.status(500).send("key is not correct");
@@ -28,7 +30,7 @@ router.post("/change", (req, res) => {
     const blog = req.body.blog;
     const github = req.body.github;
 
-    if (keyCheck(key)) {
+    if (key && keyCheck(key)) {
         db.query(
             `UPDATE about SET name = '${name}', birth = '${birth}', lastgraduate = '${lastgraduate}', isnew = ${isnew}, tel = '${tel}', email = '${email}', blog = '${blog}', github = '${github}' WHERE id = 1`,
             (err, _) => {
