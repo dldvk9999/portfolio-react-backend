@@ -34,12 +34,21 @@ router.post("/create", (req, res) => {
             (err: any, _: any) => {
                 if (err) {
                     console.log(err);
-                    res.status(500).send("activity update db error");
+                    res.status(500).send("activity create db error");
                 } else {
                     db.query(
                         `INSERT INTO activity(name, start, end, introduce, position, takeaway, image, isbackup) VALUES('${name}','${start}','${end}','${introduce}','${position}','${takeaway}','${image}',1)`
-                    );
-                    res.status(200).send("update success");
+                    ),
+                        (err, _) => {
+                            if (err) {
+                                console.log(err);
+                                res.status(500).send(
+                                    "activity create db error"
+                                );
+                            } else {
+                                res.status(200).send("create success");
+                            }
+                        };
                 }
             };
     } else {
