@@ -8,10 +8,13 @@ router.post("/", (req, res) => {
     const key = req.body.key;
 
     if (key && keyCheck(key)) {
-        db.query("select * from project", (err, row) => {
-            if (err) res.status(500).send("about db error");
-            else res.status(200).send({ length: row.length, data: row });
-        });
+        db.query(
+            "select * from project where isbackup = 0 order by id",
+            (err, row) => {
+                if (err) res.status(500).send("about db error");
+                else res.status(200).send({ length: row.length, data: row });
+            }
+        );
     } else {
         res.status(500).send("key is not correct");
     }
