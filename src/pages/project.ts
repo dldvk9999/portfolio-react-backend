@@ -17,6 +17,36 @@ router.post("/", (req, res) => {
     }
 });
 
+router.post("/create", (req, res) => {
+    const key = req.body.key;
+    const name = req.body.name;
+    const start = req.body.start;
+    const end = req.body.end;
+    const introduce = req.body.introduce;
+    const stack = req.body.stack;
+    const takeaway = req.body.takeaway;
+    const image = req.body.image;
+
+    if (key && keyCheck(key)) {
+        db.query(
+            `INSERT INTO activity(name, start, end, introduce, stack, takeaway, image) VALUES('${name}','${start}','${end}','${introduce}','${stack}','${takeaway}','${image}')`
+        ),
+            (err: any, _: any) => {
+                if (err) {
+                    console.log(err);
+                    res.status(500).send("activity update db error");
+                } else {
+                    db.query(
+                        `INSERT INTO activity(name, start, end, introduce, stack, takeaway, image, isbackup) VALUES('${name}','${start}','${end}','${introduce}','${stack}','${takeaway}','${image}',1)`
+                    );
+                    res.status(200).send("update success");
+                }
+            };
+    } else {
+        res.status(500).send("key is not correct");
+    }
+});
+
 router.post("/change", (req, res) => {
     const key = req.body.key;
     const id = req.body.id;
