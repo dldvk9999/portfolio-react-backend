@@ -29,14 +29,14 @@ router.post("/create", (req, res) => {
 
     if (key && keyCheck(key)) {
         db.query(
-            `INSERT INTO activity(name, start, end, introduce, position, takeaway, image, isbackup) VALUES('${name}','${start}','${end}','${introduce}','${position}','${takeaway}','${image}',0), ('${name}','${start}','${end}','${introduce}','${position}','${takeaway}','${image}',1);`
-        ),
+            `INSERT INTO activity(name, start, end, introduce, position, takeaway, image, isbackup) VALUES('${name}','${start}','${end}','${introduce}','${position}','${takeaway}','${image}',0), ('${name}','${start}','${end}','${introduce}','${position}','${takeaway}','${image}',1)`,
             (err: any, _: any) => {
                 if (err) {
                     console.log(err);
                     res.status(500).send("activity create db error");
                 } else res.status(200).send("create success");
-            };
+            }
+        );
     } else {
         res.status(500).send("key is not correct");
     }
