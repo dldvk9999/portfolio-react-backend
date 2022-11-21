@@ -29,8 +29,7 @@ router.post("/create", (req, res) => {
 
     if (key && keyCheck(key)) {
         db.query(
-            `INSERT INTO project(name, start, end, introduce, stack, takeaway, image) VALUES('${name}','${start}','${end}','${introduce}','${stack}','${takeaway}','${image}');
-            INSERT INTO project(name, start, end, introduce, stack, takeaway, image, isbackup) VALUES('${name}','${start}','${end}','${introduce}','${stack}','${takeaway}','${image}',1)`
+            `INSERT INTO project(name, start, end, introduce, stack, takeaway, image, isbackup) VALUES('${name}','${start}','${end}','${introduce}','${stack}','${takeaway}','${image}',0), ('${name}','${start}','${end}','${introduce}','${stack}','${takeaway}','${image}',1)`
         ),
             (err: any, _: any) => {
                 if (err) {
