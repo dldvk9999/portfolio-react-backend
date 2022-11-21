@@ -29,10 +29,18 @@ router.post("/change", (req, res) => {
     const email = req.body.email;
     const blog = req.body.blog;
     const github = req.body.github;
+    const certification = req.body.certification;
+    const frontend = req.body.frontend;
+    const backend = req.body.backend;
+    const language = req.body.language;
+    const versioncontrol = req.body.versioncontrol;
+    const deployment = req.body.deployment;
+    const communication = req.body.communication;
+    const platform = req.body.platform;
 
     if (key && keyCheck(key)) {
         db.query(
-            `UPDATE about SET name = '${name}', birth = '${birth}', lastgraduate = '${lastgraduate}', isnew = ${isnew}, tel = '${tel}', email = '${email}', blog = '${blog}', github = '${github}' WHERE id = 1`,
+            `UPDATE about SET name = '${name}', birth = '${birth}', lastgraduate = '${lastgraduate}', isnew = ${isnew}, tel = '${tel}', email = '${email}', blog = '${blog}', github = '${github}', certification = '${certification}', frontend = '${frontend}', backend = '${backend}', language = '${language}', versioncontrol = '${versioncontrol}', deployment = '${deployment}', communication = '${communication}', platform = '${platform}' WHERE id = 1`,
             (err, _) => {
                 if (err) {
                     console.log(err);
