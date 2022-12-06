@@ -8,23 +8,11 @@ import mysql from "mysql";
 //     database: "vgtusfzjs3r27hhl",
 // });
 
-// const connection = mysql.createConnection({
-//     host: "gateway01.us-west-2.prod.aws.tidbcloud.com",
-//     user: "47bM2TMyXaSgn5X.root",
-//     password: "",
-//     port: 4000,
-//     database: "test",
-//     ssl: {
-//         minVersion: "TLSv1.2",
-//         rejectUnauthorized: true,
-//     },
-// });
-
 const connection = mysql.createConnection({
-    host: process.env.TIDB_HOST,
-    user: process.env.TIDB_USER,
-    password: process.env.TIDB_PASSWORD,
-    port: Number(process.env.TIDB_PORT),
+    host: "gateway01.us-west-2.prod.aws.tidbcloud.com",
+    user: "47bM2TMyXaSgn5X.root",
+    password: "Whdrms6533@",
+    port: 4000,
     database: "test",
     ssl: {
         minVersion: "TLSv1.2",
