@@ -16,7 +16,7 @@ const connection = mysql.createConnection({
     database: "test",
     ssl: {
         minVersion: "TLSv1.2",
-        rejectUnauthorized: true,
+        rejectUnauthorized: false,
     },
 });
 
