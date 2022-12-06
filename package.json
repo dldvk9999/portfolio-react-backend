@@ -2,7 +2,8 @@
     "name": "portfolio-backend",
     "version": "1.0.0",
     "engines": {
-        "node": "16.13.2"
+        "node": "^19.2.0",
+        "npm": "8.19.2"
     },
     "description": "",
     "main": "index.js",
